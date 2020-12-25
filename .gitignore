@@ -2,6 +2,7 @@
 .ormconfig.json
 .ormconfig-exemple.json
 .env
+typegem/*
 
 # Logs
 logs
