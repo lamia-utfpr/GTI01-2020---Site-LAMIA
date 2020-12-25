@@ -1,8 +1,0 @@
-# dependencies
-/node_modules
-
-.env
-
-tmp/*
-!tmp/uploads
-tmp/uploads/*
