@@ -1,3 +1,4 @@
+import '@shared/infra/typeorm';
 import 'dotenv/config';
 import express from 'express';
 import routes from './routes';
