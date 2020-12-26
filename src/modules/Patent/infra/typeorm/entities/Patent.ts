@@ -1,34 +1,11 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { v4 as uuidv4 } from 'uuid';
+import BasicEntity from '@shared/infra/typeorm/entities/BasicEntity';
+import { Column, Entity } from 'typeorm';
 
 @Entity('patents', { schema: 'public' })
-export default class Patent {
-  @PrimaryColumn({ type: 'uuid', name: 'id' })
-  id: string;
-
+export default class Patent extends BasicEntity {
   @Column('character varying', { name: 'name', length: 255 })
   name: string;
 
   @Column('text', { name: 'description', nullable: true })
   description: string | null;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  constructor(props: Omit<Patent, 'id'>, id?: string) {
-    Object.assign(this, props);
-
-    if (!id) {
-      this.id = uuidv4();
-    }
-  }
 }
