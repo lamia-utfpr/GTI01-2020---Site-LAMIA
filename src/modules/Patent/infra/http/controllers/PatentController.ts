@@ -1,14 +1,15 @@
+import CreatePatentService from '@modules/Patent/services/CreatePatentService';
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import PatentRepository from '../../typeorm/repositories/PatentRepository';
-// import { container } from 'tsyringe';
 
 export default class PatentController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
 
-    const repository = new PatentRepository();
+    const createPatent = container.resolve(CreatePatentService);
 
-    const patent = await repository.create({ name, description });
+    const patent = await createPatent.execute({ name, description });
 
     return response.json(patent);
   }

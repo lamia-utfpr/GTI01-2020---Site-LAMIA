@@ -1,4 +1,4 @@
 export default interface ICreatePatentDTO {
   name: string;
-  description: string | null;
+  description?: string | null;
 }
