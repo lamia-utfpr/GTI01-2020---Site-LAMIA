@@ -1,13 +1,19 @@
 import 'reflect-metadata';
 
+import AppError from '@shared/Errors/AppError';
 import CreatePatentService from './CreatePatentService';
 import FakePatentRepository from '../repositories/fakes/FakePatentRepository';
 
-describe('CreatePatent', () => {
-  it('should be able create a new patent', async () => {
-    const fakePatentRepository = new FakePatentRepository();
-    const createPatentService = new CreatePatentService(fakePatentRepository);
+let fakePatentRepository: FakePatentRepository;
+let createPatentService: CreatePatentService;
 
+describe('CreatePatent', () => {
+  beforeEach(() => {
+    fakePatentRepository = new FakePatentRepository();
+    createPatentService = new CreatePatentService(fakePatentRepository);
+  });
+
+  it('should be able create a new patent', async () => {
     const patentWithDescription = await createPatentService.execute({
       name: 'Orientador',
       description: 'Orientador orienta',
@@ -24,7 +30,25 @@ describe('CreatePatent', () => {
       patentWithDescription.id !== patentWithoutDescription.id,
     ).toBeTruthy();
   });
-  // it('only administrators, coordinators and advisors should be able to create a new patent', () => {});
-  // it('should not be able create two patent on the same name', () => {});
-  // it('should not be able create a new patent with empty name', () => {});
+  // it('only administrators, coordinators and advisors should be able to create a new patent', async () => {});
+  it('should not be able create two patent on the same name', async () => {
+    const patent = await createPatentService.execute({
+      name: 'Orientador',
+    });
+
+    expect(patent).toHaveProperty('id');
+    await expect(
+      createPatentService.execute({
+        name: 'Orientador',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able create a new patent with empty name', async () => {
+    await expect(
+      createPatentService.execute({
+        name: '',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
