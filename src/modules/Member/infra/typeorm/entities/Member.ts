@@ -81,6 +81,6 @@ export default class Members extends BasicEntity {
     onDelete: 'SET NULL',
     onUpdate: 'CASCADE',
   })
-  @JoinColumn([{ name: 'officeId', referencedColumnName: 'id' }])
-  office: Patent;
+  @JoinColumn([{ name: 'patentId', referencedColumnName: 'id' }])
+  patent: Patent;
 }
