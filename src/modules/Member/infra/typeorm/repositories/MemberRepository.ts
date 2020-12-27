@@ -44,7 +44,7 @@ export default class MemberRepository implements IMemberRepository {
 
   public async findByEmailOrLogin(input: string): Promise<Member | undefined> {
     const member = await this.ormRepository.findOne({
-      where: { email: input, login: input },
+      where: [{ email: input }, { login: input }],
     });
 
     return member;

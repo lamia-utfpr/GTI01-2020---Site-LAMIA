@@ -4,7 +4,30 @@ import IMemberRepository from '@modules/Member/repositories/IMemberRepository';
 import Patent from '@modules/Patent/infra/typeorm/entities/Patent';
 
 export default class FakeMemberRepository implements IMemberRepository {
-  private members: Member[] = [];
+  private members: Member[] = [
+    {
+      id: '17e1b166-47ce-11eb-b378-0242ac130002',
+      login: 'Brainiac',
+      name: 'Support Brainiac',
+      email: 'support@lamia.utfpr.sh.edu.br',
+      passwordHash: 'fake',
+      linkedin: null,
+      gitHub: null,
+      lattes: null,
+      description: null,
+      quoteName: null,
+      avatar: null,
+      patent: {
+        id: '97cb5197-9d56-4f1c-aec8-43876b53a942',
+        name: 'Administrator',
+        description: null,
+        createdAt: new Date(2015, 4, 3),
+        updatedAt: new Date(2015, 4, 3),
+      },
+      createdAt: new Date(2015, 4, 3),
+      updatedAt: new Date(2015, 4, 3),
+    },
+  ];
 
   public async save(member: Member): Promise<Member> {
     const memberIndex = this.members.findIndex(
