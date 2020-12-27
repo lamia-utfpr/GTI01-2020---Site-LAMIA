@@ -1,14 +1,6 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
 import Patent from '@modules/Patent/infra/typeorm/entities/Patent';
 import BasicEntity from '@shared/infra/typeorm/entities/BasicEntity';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity('members', { schema: 'public' })
 export default class Members extends BasicEntity {
