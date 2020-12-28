@@ -37,7 +37,7 @@ export default class AuthenticationService {
       throw new AppError('Email ou senha inválido', 401);
     }
 
-    const { secret = '', expiresIn } = authConfig.jwt;
+    const { secret, expiresIn } = authConfig.jwt;
 
     const token = sign({}, secret, {
       subject: member.id,

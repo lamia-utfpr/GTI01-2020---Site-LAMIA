@@ -9,7 +9,7 @@ let fakeMemberRepository: FakeMemberRepository;
 let authenticationService: AuthenticationService;
 let fakeHashProvider: FakeHashProvider;
 
-describe('CreatePatent', () => {
+describe('Authentication', () => {
   beforeEach(() => {
     fakeMemberRepository = new FakeMemberRepository();
     fakeHashProvider = new FakeHashProvider();

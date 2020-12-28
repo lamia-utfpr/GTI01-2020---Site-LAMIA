@@ -17,11 +17,11 @@ export default class PatentRepository implements IPatentRepository {
     return this.ormRepository.save(patent);
   }
 
-  // public async findById(id: string): Promise<Administrador | undefined> {
-  //   const administrador = await this.ormRepository.findOne(id);
+  public async findById(id: string): Promise<Patent | undefined> {
+    const patent = await this.ormRepository.findOne(id);
 
-  //   return administrador;
-  // }
+    return patent;
+  }
 
   public async create(patentData: ICreatePatentDTO): Promise<Patent> {
     const patent = this.ormRepository.create(patentData);
