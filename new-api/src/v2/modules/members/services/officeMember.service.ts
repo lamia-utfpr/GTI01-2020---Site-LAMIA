@@ -7,13 +7,13 @@ import IOrderOfficeMemberDTO, {
 import IRepositoryOfficeMember from '../repositories/IRepositoryOfficeMember';
 import { EntityOfficeMember } from '../typeorm/entities/officeMember.entity';
 import { RepositoryOfficeMember } from '../typeorm/repositories/officeMember.repository';
-import { create, findAll } from './';
+import { create, findAll } from './officeMember';
 
 @Injectable()
 export class ServiceOfficeMember {
   constructor(
     @InjectRepository(RepositoryOfficeMember)
-    private readonly exampleRepository: IRepositoryOfficeMember,
+    private readonly officeMemberRepository: IRepositoryOfficeMember,
   ) {}
 
   public async createOfficeMember(
@@ -21,7 +21,7 @@ export class ServiceOfficeMember {
   ): Promise<EntityOfficeMember> {
     return create({
       data: data,
-      repository: this.exampleRepository,
+      repository: this.officeMemberRepository,
     });
   }
 
@@ -33,6 +33,6 @@ export class ServiceOfficeMember {
       [attribute || 'name']: direction || 'ASC',
     };
 
-    return findAll({ repository: this.exampleRepository, order });
+    return findAll({ repository: this.officeMemberRepository, order });
   }
 }
